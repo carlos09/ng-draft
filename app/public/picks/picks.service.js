@@ -18,20 +18,21 @@
 		var setPicks = function(data){
 			picks = data;
 		}
-		//
-		// var getPicks = function(id){
-		// 	return $http.get("/picks/" + id)
-		// 				.then(function(response){
-		// 					return response.data;
-		// 				})
-		// }
 
-		// var createProduct = function(product){
-		// 	return $http.post("/product/", product)
-		// 				.then(function(response){
-		// 					return response.data;
-		// 				})
-		// }
+		var getSet = function(id){
+			return $http.get("/picks/" + id)
+						.then(function(response){
+							return response.data;
+						})
+		}
+
+		var createPickSet = function(pickset){
+			return $http.post("/createset/", pickset)
+				.then(function(response){
+					console.log('repsonse is: ', response.data);
+					return response.data;
+				})
+		}
 		//
 		// var updateProduct = function(product, id){
 		// 	return $http.put("/product/" + id, product)
@@ -50,6 +51,7 @@
 
 		return {
 			getPicks: getPicks,
+			createPickSet: createPickSet
 			// getPick: getPick,
 			// updatePick: updatePick,
 			// deletePick: deletePick

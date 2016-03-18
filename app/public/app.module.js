@@ -6,7 +6,8 @@
         	'ngRoute',
             'Main.products',
             'Main.product',
-            'Main.picks'
+            'Main.picks',
+            'Main.pickset'
             ]
         )
         .config(function($routeProvider){
@@ -34,7 +35,16 @@
           .when("/picks", {
               templateUrl: './picks/picks.html',
               controller: 'picksController'
-          }).when("/login", {
+          })
+          .when('/createset/:id', {
+            templateUrl: './picks/createset.html',
+            controller: 'picksetController'
+          })
+          .when("/createset", {
+              templateUrl: './picks/createPickSet.html',
+              controller: 'picksetController'
+          })
+          .when("/login", {
               templateUrl: './login/login.html'
           })
           .otherwise({ redirectTo: '/' });
