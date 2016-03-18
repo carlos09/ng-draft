@@ -1,0 +1,11 @@
+<div ng-show="notification" class="alert alert-success">{{ notification }}</div>
+
+<form ng-submit="save()">
+  <div class="form-group">
+    <md-datepicker ng-model="myDate" md-placeholder="Enter date" ng-change="changeSelect(myDate)" ></md-datepicker>
+    <input type="text" ng-model="changeDate" class="form-control" id="changeDate" name="changeDate">
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
