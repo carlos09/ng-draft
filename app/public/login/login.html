@@ -1,0 +1,37 @@
+<!-- <div ng-show="notification" class="alert alert-success">{{ notification }}</div> -->
+
+<form class="content" ng-submit="save()">
+  <!-- <div class="form-group ">
+    <label for="username">Username</label>
+    <input type="text" ng-model="username" class="form-control" id="username" name="username" placeholder="Enter Username">
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="text" ng-model="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form> -->
+
+<div class="form-group col-sm-4 col-sm-offset-2">
+<span class="input input--manami">
+  <input class="input__field input__field--manami" type="text" ng-model="username" name="username" id="username" />
+  <label class="input__label input__label--manami" for="input-32">
+    <span class="input__label-content input__label-content--manami">Username</span>
+  </label>
+</span>
+</div>
+
+<div class="form-group col-sm-4">
+<span class="input input--manami">
+  <input class="input__field input__field--manami" type="text" ng-model="password" name="password" id="password" />
+  <label class="input__label input__label--manami" for="input-33">
+    <span class="input__label-content input__label-content--manami">Password</span>
+  </label>
+</span>
+</div>
+<div class="form-group col-sm-4 col-sm-offset-3">
+  <button type="submit" class="btn btn-primary">Login</button>
+</div>
+
+</form>
