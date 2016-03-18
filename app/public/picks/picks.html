@@ -1,18 +1,27 @@
-Picks page template
+<div class="row">
+	<div class="col-sm-12">
+		<h4>Select the set you want to see:</h4>
+		<md-datepicker ng-model="myDate" md-placeholder="Enter date" ng-change="changeSelect(myDate)" ></md-datepicker>
 
-<h4>Standard date-picker</h4>
-<md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+	</div>
+</div>
 
-{{ myDate | date:'MMMM d, y' }}
+<div class="row">
+	<div class="col-sm-12">
+		<h5>Now Showing: {{ myDate | date:'MMMM d, y'  }}</h5>
+	</div>
+</div>
 
-<div class="col-md-4" ng-repeat="pick in picks">
-		<div class="well">
-			<h4>{{pick.name}}</h4>
+<div class="row">
+	<div class="col-md-4" ng-repeat="pick in picks | filter: changeDate ">
+			<div class="well">
+				<h4>{{pick.name}}</h4>
 
-			<label>
-				Price:
-			</label>
-			{{ pick._id }} DKK.
+				<label>
+					Price:
+				</label>
+				{{ pick._id }} DKK.
 
-		</div>
+			</div>
+	</div>
 </div>

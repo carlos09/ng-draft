@@ -38,8 +38,6 @@ exports.createProduct = function(req, res){
       if(err) console.error;
         console.log(data);
     })
-
-
   })
 }
 

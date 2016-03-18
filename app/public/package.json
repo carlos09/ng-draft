@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "angular": "^1.5.1",
+    "bootstrap": "^3.3.2"
+  },
+  "dependencies": {
+    "angular": "^1.5.1",
+    "angular-material": "^1.0.6",
+    "angular-moment": "^1.0.0-beta.4",
+    "angular-route": "^1.5.1",
+    "moment": "^2.12.0"
+  }
+}
