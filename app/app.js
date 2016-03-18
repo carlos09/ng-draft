@@ -29,12 +29,19 @@ db.once("open", function(callback){
 
 /* Routes */
 app.get("/ok", routes.index);
+
 app.get("/product/:id", routes.product);
 app.get("/products", routes.products);
 app.post("/product", routes.createProduct);
 app.put("/product/:id", routes.updateProduct);
 app.delete("/product/:id", routes.deleteProduct);
+
+//app.get("/createset/:id", routes.set);
 app.get("/picks", routes.picks);
+app.post("/createset", routes.createPickSet);
+//app.put("/createset/:id", routes.updatePickSet);
+
+
 
 var server = app.listen(3000, function(){
 	var port = server.address().port;

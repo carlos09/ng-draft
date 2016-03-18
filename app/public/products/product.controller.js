@@ -7,6 +7,8 @@
 	function productController($scope, productsService, $routeParams){
 
 		if($routeParams.id){
+			console.log('id is: ', $routeParams.id);
+
 			productsService.getProduct($routeParams.id)
 				.then(function(response){
 					$scope.product = response;
@@ -34,6 +36,7 @@
 			}
 
 			if($scope.state === "create"){
+				console.log(' doing create', product);
 				productsService.createProduct(product)
 					.then(notify);
 			}
