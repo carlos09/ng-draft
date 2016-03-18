@@ -1,0 +1,18 @@
+Picks page template
+
+<h4>Standard date-picker</h4>
+<md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+
+{{ myDate | date:'MMMM d, y' }}
+
+<div class="col-md-4" ng-repeat="pick in picks">
+		<div class="well">
+			<h4>{{pick.name}}</h4>
+
+			<label>
+				Price:
+			</label>
+			{{ pick._id }} DKK.
+
+		</div>
+</div>
