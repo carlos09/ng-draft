@@ -48,6 +48,6 @@
           .when("/login", {
               templateUrl: './login/login.html'
           })
-          .otherwise({ redirectTo: '/' });
+          //.otherwise({ redirectTo: '/' });
           })
 }());

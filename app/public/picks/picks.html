@@ -12,15 +12,18 @@
 	</div>
 </div>
 
+<!-- <img src="../uploads/IMG_0367.jpg" /> -->
+
 <div class="row">
-	<div class="col-md-4" ng-repeat="pick in picks | filter: changeDate ">
+	<div class="col-md-12" ng-repeat="pick in picks | filter: changeDate ">
 			<div class="well">
 				<h4>{{pick.name}}</h4>
 
-				<label>
-					Price:
-				</label>
-				{{ pick._id }} DKK.
+				<div class="row">
+					<div class="col-md-4" ng-repeat="imgPick in pick.imgList.uploadedPicks">
+						<img data-ng-src="../uploads/{{imgPick}}" class="img-responsive" />
+					</div>
+				</div>
 
 			</div>
 	</div>

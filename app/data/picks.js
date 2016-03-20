@@ -5,7 +5,10 @@ var picksSchema = new Schema({
     id: Number,
     name: String,
     dateCreated: Date,
-    dateUpdated: Date
+    dateUpdated: Date,
+    imgList: {
+      uploadedPicks: Object
+    }
 });
 
 var PicksModel = mongoose.model("Picks", picksSchema);

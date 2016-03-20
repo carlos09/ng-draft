@@ -53,7 +53,7 @@
         };
     }]);
 
-		function picksetController($scope, picksService, $routeParams){
+		function picksetController($scope, picksService, $routeParams, FileUploader){
 
 			if($routeParams.id){
 				console.log('id is: ', $routeParams.id);
@@ -98,29 +98,96 @@
 		  // }
 			//
 
-			console.log('in picks controller');
-
 			$scope.save = function(){
 
 				console.log('scope is: ', $scope);
-				// var pickset = {
-				// 	name: $scope.changeDate,
-				// 	dateCreated: $scope.dateCreated,
-				// 	dateUpdated: $scope.dateUpdated
-				// }
-				//
-				// console.log('pickset values: ', pickset);
-				//
-				// if($scope.state === "create"){
-				// 	picksService.createPickSet(pickset)
-				// 		.then(notify);
-				// }
-				// else{
-				// 	console.log('set up update section');
-				// 	// picksService.updateProduct(pickset, $scope.pickset.id)
-				// 	// 	.then(notify);
-				// }
+
+				$scope.uploadedImgs = $scope.uploader.queue;
+
+				var imgArr = [];
+				angular.forEach($scope.uploadedImgs, function(item) {
+				    var listName = item.file.name;
+				    imgArr.push(listName);
+				});
+
+				console.log("scope list:", $scope);
+				console.log("scope list2:", imgArr);
+
+				var pickset = {
+					name: $scope.changeDate,
+					dateCreated: $scope.dateCreated,
+					dateUpdated: $scope.dateUpdated,
+					imgList: {
+						uploadedPicks: imgArr
+					}
+				}
+
+				console.log('pickset values: ', pickset);
+
+				if($scope.state === "create"){
+					picksService.createPickSet(pickset)
+						.then(notify);
+				}
+				else{
+					console.log('set up update section');
+					// picksService.updateProduct(pickset, $scope.pickset.id)
+					// 	.then(notify);
+				}
 			}
 
+
+			// Uploader stuff
+			var uploader = $scope.uploader = new FileUploader({
+					url: '/upload'
+			});
+
+			// FILTERS
+
+			uploader.filters.push({
+					name: 'imageFilter',
+					fn: function(item /*{File|FileLikeObject}*/, options) {
+						console.log('filter stuff ', item);
+							var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+							return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+					}
+			});
+
+			// CALLBACKS
+
+			uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+					console.info('onWhenAddingFileFailed', item, filter, options);
+			};
+			uploader.onAfterAddingFile = function(fileItem) {
+					console.info('onAfterAddingFile', fileItem);
+			};
+			uploader.onAfterAddingAll = function(addedFileItems) {
+					console.info('onAfterAddingAll', addedFileItems);
+			};
+			uploader.onBeforeUploadItem = function(item) {
+					console.info('onBeforeUploadItem', item);
+			};
+			uploader.onProgressItem = function(fileItem, progress) {
+					console.info('onProgressItem', fileItem, progress);
+			};
+			uploader.onProgressAll = function(progress) {
+					console.info('onProgressAll', progress);
+			};
+			uploader.onSuccessItem = function(fileItem, response, status, headers) {
+					console.info('onSuccessItem', fileItem, response, status, headers);
+			};
+			uploader.onErrorItem = function(fileItem, response, status, headers) {
+					console.info('onErrorItem', fileItem, response, status, headers);
+			};
+			uploader.onCancelItem = function(fileItem, response, status, headers) {
+					console.info('onCancelItem', fileItem, response, status, headers);
+			};
+			uploader.onCompleteItem = function(fileItem, response, status, headers) {
+					console.info('onCompleteItem', fileItem, response, status, headers);
+			};
+			uploader.onCompleteAll = function(fileItem, an) {
+					console.info('onCompleteAll', $scope.uploader);
+			};
+
+			console.info('uploader in picks', $scope);
 	}
 }());
