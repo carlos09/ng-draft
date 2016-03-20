@@ -7,7 +7,8 @@
             'Main.products',
             'Main.product',
             'Main.picks',
-            'Main.pickset'
+            'Main.pickset',
+            'Main.uploader'
             ]
         )
         .config(function($routeProvider){
