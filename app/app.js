@@ -2,6 +2,8 @@
 var express 	 	= require('express'),
 		routes 		= require("./routes"),
 		path				= require('path'),
+		busboy			= require('connect-busboy'),
+		fs 					= require('fs-extra'),
 		ejs 				= require("ejs"),
 		mongoose		= require('mongoose'),
 		databaseName	= 'mongo_dd';
@@ -15,6 +17,7 @@ var app = express();
 app.engine("html", ejs.renderFile);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
+app.use(busboy());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json()); // remember to install the body-parser module
 
@@ -40,6 +43,21 @@ app.delete("/product/:id", routes.deleteProduct);
 app.get("/picks", routes.picks);
 app.post("/createset", routes.createPickSet);
 //app.put("/createset/:id", routes.updatePickSet);
+
+app.route('/upload')
+.post(function (req, res) {
+  req.pipe(req.busboy);
+  req.busboy.on('file', function (fieldname, file, filename) {
+    var stream = fs.createWriteStream(__dirname + '/public/uploads/' + filename);
+    file.pipe(stream);
+    stream.on('close', function () {
+      console.log('File ' + filename + ' is uploaded');
+      res.json({
+        filename: filename
+      });
+    });
+  });
+});
 
 
 
