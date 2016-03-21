@@ -8,7 +8,8 @@
             'Main.product',
             'Main.picks',
             'Main.pickset',
-            'Main.uploader'
+            'Main.uploader',
+            'Main.authController'
             ]
         )
         .config(function($routeProvider){
@@ -29,10 +30,10 @@
               templateUrl: './products/deleteProduct.html',
               controller: 'productsController'
           })
-          .when("/", {
-              templateUrl: './products/products.html',
-              controller: 'productsController'
-          })
+          // .when("/", {
+          //     templateUrl: './products/products.html',
+          //     controller: 'productsController'
+          // })
           .when("/picks", {
               templateUrl: './picks/picks.html',
               controller: 'picksController'
@@ -45,9 +46,21 @@
               templateUrl: './picks/createPickSet.html',
               controller: 'picksetController'
           })
-          .when("/login", {
-              templateUrl: './login/login.html'
-          })
+          // .when("/login", {
+          //     templateUrl: './login/login.html'
+          // })
+          .when('/', {
+                templateUrl: '/login/signin.html',
+                controller: 'authController'
+            })
+            .when('/signup', {
+                templateUrl: '/login/signup.html',
+                controller: 'authController'
+            })
+            .when('/user', {
+                templateUrl: '/partials/home.html',
+                controller: 'authController'
+            })
           //.otherwise({ redirectTo: '/' });
           })
 }());

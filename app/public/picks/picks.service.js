@@ -9,8 +9,6 @@
 			return $http.get("/picks")
 						.then(function(response){
 							setPicks(response.data);
-							console.log('response is: ', response.data);
-
 							return response.data;
 						})
 		};
@@ -29,7 +27,6 @@
 		var createPickSet = function(pickset){
 			return $http.post("/createset/", pickset)
 				.then(function(response){
-					console.log('repsonse is: ', response.data);
 					return response.data;
 				})
 		}

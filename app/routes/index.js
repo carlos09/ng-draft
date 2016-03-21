@@ -1,3 +1,4 @@
+
 exports.index = function(req, res){
   // render a view: /views/index.html
   // res.render('index');
@@ -32,13 +33,6 @@ exports.createProduct = function(req, res){
   var product = new ProductsModel(productData);
   product.save(function(err){
     if(err) console.error;
-    /* just to check if it went well... */
-
-
-    ProductsModel.find(function(err, data){
-      if(err) console.error;
-        console.log(data);
-    })
   })
 }
 
@@ -85,12 +79,40 @@ exports.createPickSet = function(req, res){
   var set = new PickSetModel(picksetData);
   set.save(function(err){
     if(err) console.error;
-    /* just to check if it went well... */
-
-    // PickSetModel.find(function(err, data){
-    //   console.log('found it', data);
-    //   if(err) console.error;
-    //     console.log(data);
-    // })
   })
+}
+
+exports.signup = function(req, res) {
+  console.log("do sign up!");
+  var SignUpModel = require("../data/users");
+  var userData = req.body;
+  var u =  new SignUpModel(userData);
+  u.username = req.body.email;
+  u.password = req.body.password;
+  u.lastname = req.body.lastname;
+  u.firstname = req.body.firstname;
+  u.email = req.body.email;
+  u.roletype = 'player'
+
+  u.save(function(err){
+      if (err) {
+          res.json({'alert':'Registration error'});
+      }else{
+          res.json({'alert':'Registration success'});
+      }
+  });
+}
+
+
+exports.login = function(req, res) {
+  res.json(req.user);
+}
+
+exports.currentUser = function(req, res) {
+  res.json(req.user);
+}
+
+exports.logOut = function(req, res) {
+  req.logout();
+  res.sendStatus(200);
 }
